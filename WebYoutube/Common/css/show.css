@@ -1,0 +1,120 @@
+﻿
+.show-user{
+   
+    margin-left: -20px;
+    margin-top: -10px;
+}
+.img{
+    width: 50px;
+    height: 50px;
+}
+.noidung1{
+    font-size: 18px;
+    
+}
+.noidung2 {
+    font-size: 16px;
+}
+.he{
+    height: 4px;
+}
+.display-comment{
+    display: block;
+}
+.hide-comment{
+    display: none;
+}
+.hr{
+    border-bottom: 1.5px solid white;
+}
+.post-summary-footer2 {
+    margin-top: -30px;
+}
+.cm{
+    width: 670px;
+    margin-top: 10px;
+}
+.img-comment{
+    width: 37px;
+    height: 40px;
+}
+.date{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.content-font{
+    font-size: 16px;
+    padding-top: 10px;
+}
+.name-bold{
+    font-weight: bold;
+}
+
+#edit {
+    margin-left: 300px;
+    color: #D8450B;
+
+}
+#delete {
+    padding-left: 5px;
+    color: #D8450B;
+
+}
+#edit:hover{
+    cursor: pointer;
+}
+#delete:hover {
+    cursor: pointer;
+}
+.none{
+    display: none;
+}
+.block{
+    display: block;
+}
+#none{
+    display: none;
+}
+.setColor {
+    color: #D8450B;
+}
+.padding{
+    width: 20px;
+    float: left;
+    height: 100px;
+}
+.email {
+    font-size: 12px;
+    text-transform: none;
+}
+.title-offer{
+    font-size: 12px;
+    text-transform: none;
+    font-weight: bold;
+ 
+}
+.like2:hover{
+    cursor: pointer;
+}
+.dislike2:hover {
+    cursor: pointer;
+}
+
+
+.video{
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 0px;
+    height: 0px;
+}
+
+.video iframe{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom : 0px;
+    height: 100%;
+    width: 100%;
+  
+}

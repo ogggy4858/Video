@@ -1,0 +1,23 @@
+﻿.titleSpan{
+    font-size: 18px;
+    font-weight: bold;
+}
+.colorTitle{
+    color: black;
+}
+
+.More{
+    position: absolute;
+    bottom: -120px;
+    right: 50px;
+    font-size: 12px;
+}
+.rela{
+    position: relative;
+}
+.calen {
+    position: absolute;
+    bottom: -120px;
+    right: 120px;
+    font-size: 12px;
+}

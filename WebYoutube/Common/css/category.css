@@ -1,0 +1,8 @@
+﻿body {
+}
+
+ul:nth-child(1) {
+    display: inline-flex;
+    list-style-type: none;
+}
+

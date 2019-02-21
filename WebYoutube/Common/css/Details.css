@@ -1,0 +1,89 @@
+﻿body {
+}
+.main{
+    height: 870px;
+}
+.info{
+    width: 200px;
+    height: 800px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background-color: azure;
+}
+
+.menu {
+    width: 1000px;
+    height: 32px;
+    position: relative;
+    top: -800px;
+    left: 200px;
+    
+    background-color: brown;
+}
+.content {
+    width: 1000px;
+    height: 768px;
+    position: relative;
+    top: -800px;
+    left: 200px;
+    background-color: cornflowerblue;
+}
+.avata{
+    height: 290px;
+    width: 270px;
+    background-color: antiquewhite;
+}
+.abc{
+    position: relative;
+    top: 0px;
+    left: 725px;
+}
+.span {
+    font-size: 34px;
+    position: relative;
+    top: 10px;
+    left: 0px;
+}
+
+#link{
+    margin-left: 10px;
+    font-size: 20px;
+}
+.list-video{
+    background-color: lightgray;
+    height: 150px;
+    
+}
+.title{
+    font-size: 40px;
+}
+.justify1{
+
+    font-size: 24px;
+}
+.justify2 {
+
+    font-size: 16px;
+}
+.search{
+    width: 190px;
+}
+.font-details{
+    color: black;
+}
+.font-item {
+    color: black;
+}
+.aaa{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.a-padding{
+   
+    padding-left: 1010px;
+    font-size: 18px;
+}
+.display{
+    display: none;
+}

@@ -1,0 +1,17 @@
+﻿body {
+}
+
+.padding-history{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.display-inline{
+    display: inline;
+}
+.padding-li{
+    padding: 50px;
+    background-color: aqua;
+}
+.colorA{
+    color: black;
+}

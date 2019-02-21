@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<div class="span12" style="height: 500px;">
+    <h6 class="title-bg">Danh Mục Admin</h6>
+
+    <div class="accordion" id="accordion2">
+
+        @if (WebYoutube.Areas.Admin.Session.Admin.Position == "Admin"
+      )
+        {
+
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle collapsed" href="~/Admin/Category/Index">
+                        1: Category
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" href="~/Admin/CategoryHistory/Index">
+                        2: Category History
+                    </a>
+                </div>
+            </div>
+
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle collapsed" href="~/Admin/Position/Index">
+                        3: Position
+                    </a>
+                </div>
+            </div>
+        }
+        @if (WebYoutube.Areas.Admin.Session.Admin.Position == "Admin"
+         || WebYoutube.Areas.Admin.Session.Admin.Position == "Nhà Báo"
+         || WebYoutube.Areas.Admin.Session.Admin.Position == "Người Viết Bài"
+         || WebYoutube.Areas.Admin.Session.Admin.Position == "Người Kiểm Duyệt"
+         )
+        {
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle collapsed" href="~/Admin/PostCategory/Index">
+                        4: Post Category
+                    </a>
+                </div>
+            </div>
+
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle collapsed" href="~/Admin/User/Index">
+                        5: User
+                    </a>
+                </div>
+            </div>
+
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle collapsed" href="~/Admin/News/Index">
+                        6: News
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+

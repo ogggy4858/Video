@@ -1,0 +1,40 @@
+﻿
+@model Data.Framework.PostCategory
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+
+<div style="height: 600px">
+    Post Category
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+
+    <div class="form-actions no-color">
+
+        <p>
+           
+            <a href="~/Admin/PostCategory/Edit/@Model.ID" class="btn btn-default">Edit</a> |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+<div style="height: 600px;">
+    @using (Html.BeginForm("Create", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true);
+
+    <table class="table">
+        <tr>
+            <td>
+                Tiêu Đề
+            </td>
+            <td>
+                <input type="text" name="Title">
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Nội Dung
+            </td>
+            <td>
+                <textarea name="Content" style="width: 1000px; height: 200px;"></textarea>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Thứ Tự Hiển Thị
+            </td>
+            <td>
+                <input type="number" name="DisplayOrder">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hình Ảnh 370 x 220
+            </td>
+            <td>
+                <input type="file" name="Image">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hình Ảnh 770 x 354
+            </td>
+            <td>
+                <input type="file" name="Image2">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Post" class="btn btn-default" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    }
+
+    <div>
+        @Html.ActionLink("Back", "Index", "News")
+    </div>
+
+
+</div>

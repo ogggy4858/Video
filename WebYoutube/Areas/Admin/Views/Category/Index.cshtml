@@ -1,0 +1,81 @@
+﻿@model PagedList.IPagedList<Data.Framework.Category>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+
+}
+@section css{
+
+    <link href="~/Common/css/category.css" rel="stylesheet" />
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Index", "Category", FormMethod.Get))
+{
+    <table>
+        <tr>
+            <td>
+                <input type="text" name="search">
+            </td>
+            <td>
+                <input type="submit" value="Search" class="btn btn-default">
+            </td>
+        </tr>
+    </table>
+}
+<table class="table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Link
+        </th>
+        <th>
+            Target
+        </th>
+        <th>
+            DisplayOrder
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Link)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Target)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisplayOrder)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+            <td></td>
+        </tr>
+
+    }
+</table>
+
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }))
+
+
+<div style="height: 350px"></div>

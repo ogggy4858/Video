@@ -1,0 +1,89 @@
+﻿@model Data.Framework.News
+
+@{
+    ViewBag.Title = "EditOrder";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+    var list = (List<Data.Framework.News>)ViewBag.ListNewsOrder;
+}
+<div style="height: 500px;">
+    <div class="row">
+        @using (Html.BeginForm("EditOrder", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="span6">
+                <table class="table">
+                    <tr>
+                        <th>Title</th>
+                        <td>@Model.Title</td>
+                    </tr>
+                    <tr>
+                        <th>Create Date</th>
+                        <td>@Model.CreateDate</td>
+                    </tr>
+                    <tr>
+                        <th>Display Order Old</th>
+                        <th>@Model.DisplayOrder</th>
+                    </tr>
+                    <tr>
+                        <th>Display Order New</th>
+                        <td>
+                            @Html.TextBoxFor(x => x.DisplayOrder)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Hình Ảnh 770 x 354
+                        </td>
+                        <td>
+                            <input type="file" name="Image">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="~/Admin/News/Index" class="btn btn-default">Back To List</a>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-defaultbtn ">Edit</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+        <div class="span6">
+            <table class="table">
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Create Date
+                    </th>
+                    <th>
+                        Display Order
+                    </th>
+
+
+                </tr>
+
+                @foreach (var item in list)
+                {
+                    <tr>
+
+                        <td>
+                            <a href="~/Admin/News/EditOrder/@item.ID" style="color: black">
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreateDate)
+                        </td>
+                        <th>
+                            @Html.DisplayFor(modelItem => item.DisplayOrder)
+                        </th>
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

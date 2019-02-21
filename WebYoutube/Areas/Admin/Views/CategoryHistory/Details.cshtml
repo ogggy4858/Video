@@ -1,0 +1,27 @@
+﻿@model Data.Framework.CategoryHistory
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+
+<div style="height: 600px;">
+
+    <table class="table">
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.ID)</td>
+            <td>@Html.DisplayFor(model => model.ID)</td>
+        </tr>
+        <tr>
+            <td>Tên Danh Mục</td>
+            <td>@Html.DisplayFor(model => model.Name)</td>
+        </tr>
+    </table>
+
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

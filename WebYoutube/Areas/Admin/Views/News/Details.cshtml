@@ -1,0 +1,95 @@
+﻿@model Data.Framework.News
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@section js{
+   
+    <script src="~/Common/js/News.js"></script>
+}
+
+@section css{
+    <link href="~/Common/css/show.css" rel="stylesheet" />
+
+}
+<div class="row">
+    <!--Container row-->
+    <!-- Blog Full Post
+    ================================================== -->
+    <div class="span12 blog">
+        <!-- Blog Post 1 -->
+        <article>
+            <h3 class="title-bg"><a href="#">@Model.Title</a></h3>
+            <div class="post-Common">
+                <img src="~/Common/img/@Model.Image" style="width: 40%; height: 40%;">
+                <div class="post-body">
+                    <span class="noidung1">@Model.Content</span><br>
+                    <br>
+                    <div class="hr"></div>
+
+                    <div class="he"></div>
+                    <section class="post-Common show-user">
+                        <div class="post-body about-author">
+                            <img src="~/Common/img/@Model.Person.Immage" class="img" alt="author">
+                            <span><b>@Model.Person.FullName</b></span><br>
+                            <span><b>@Model.Person.Email</b></span><p></p>
+                        </div>
+                        <div class="hr"></div>
+                    </section>
+                </div>
+
+                <div class="post-summary-footer post-summary-footer2">
+                    <ul class="post-data">
+                        <li><i class="icon-calendar"></i>@Model.CreateDate</li>
+                        <li><i class="icon-eye-open"></i>@Model.ViewCount Lượt Xem</li>
+                        <li id="like" class="like2" data-id=""><i class="icon-ok"></i><span id="SpanLike"> Thích</span></li>
+                        <li id="dislike" class="dislike2" data-id=""><i class="icon-remove"></i><span id="SpanDis"> Không Thích</span></li>
+                        <li id="comment" data-id=""><i class="icon-comment"></i><span id="SpanComment"> Bình Luận</span></li>
+                        <li id="share" data-id=""><i class="icon-random"></i>Chia Sẻ</li>
+                    </ul>
+
+                </div>
+            </div>
+        </article>
+        <!-- About the Author -->
+        <!-- Post Comments
+        ================================================== -->
+
+        <div id="hidecomment">
+            <section class="comments">
+                <h4 class="title-bg" id="titleComment"><a name="comments"></a> Bình Luận</h4>
+                <div class="comment-form-container">
+                    <form action="#" id="comment-form">
+                        <div class="row">
+                            <div class="span10">
+                                <textarea id="ContentComment" style="width: 900px; height: 70px;"></textarea>
+                            </div>
+                            <div class="span2">
+                                <button type="button" id="bt" class="btn btn-inverse">Bình Luận</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div id="divLoadComment"></div>
+                <script id="template" type="x-tmpl-mustache">
+                    <ul>
+                        <li>
+                            <span class="comment-name name-bold">{{email}}</span>
+                            <span class="comment-date date">{{date}}</span>
+                            {{{status}}}
+                            <div class="comment-Common content-font">{{content}}</div>
+
+                        </li>
+                    </ul>
+                </script>
+
+            </section>
+        </div>
+    </div>
+
+
+</div>

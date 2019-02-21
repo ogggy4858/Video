@@ -1,0 +1,112 @@
+﻿@model List<Data.DTO.PeopleListVideoDTO>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<Data.DTO.PeopleListVideoDTO> listVideo = new List<Data.DTO.PeopleListVideoDTO>();
+    var info = (Data.DTO.PeopleInfomationDTO)ViewBag.Infomation;
+    listVideo = (List<Data.DTO.PeopleListVideoDTO>)ViewBag.ListVideo;
+    var listCount = (List<Data.DTO.PeopleListVideoDTO>)ViewBag.ListCount;
+    //
+    
+
+}
+@section css{
+
+    <link href="~/Common/css/category.css" rel="stylesheet" />
+}
+@section js{
+
+    <script src="~/Common/js/details.js"></script>
+}
+<div class="row">
+    <!--================================================== -->
+
+    <div class="span9 blog">
+        <div class="list-group">
+            @if (Model != null)
+            {
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                        <div class="row-hover" id="row_@Model[i].ID">
+                            <span></span>
+                            <a href="~/Post/Show/@Model[i].ID" class="list-group-item">
+                                <h4 class="list-group-item-heading font-details" style="text-transform: none">@Model[i].Title</h4>
+                            </a>
+                            <span class="list-group-item-text font-item">@Model[i].CreateDatePost</span>
+                            <span class="aaa"> | </span>
+                            <span class="list-group-item-text font-item">@Model[i].CommentCount Bình Luận</span>
+                            <span class="aaa"> | </span>
+                            <span class="list-group-item-text font-item">@Model[i].LikeCount Thích, @Model[i].DislikeCount Không Thích, @Model[i].ViewCount Lượt Xem</span>
+                            <span class="aaa"> | </span>
+                            <span class="list-group-item-text font-item">
+                                <a class="a" href="~/People/EditPost/@Model[i].ID">
+                                    Sửa
+                                </a>
+                            </span>
+                            <span>  </span>
+                            <span class="list-group-item-text font-item">
+                                <a class="a" href="~/People/Delete/@Model[i].ID">
+                                    Xóa
+                                </a>
+                            </span>
+                        </div>
+                        <hr>
+                    }
+                }
+                
+
+
+            
+
+        </div>
+
+       
+
+    </div>
+    <!--================================================== -->
+    <div class="span3 sidebar">
+        @using (Html.BeginForm("Details", "People", FormMethod.Get))
+        {
+            <section>
+                <div class="input-append search">
+                    <form action="">
+                        <input name="se" class="search" type="text" placeholder="Search">
+                        <button class="btn" type="submit"><i class="icon-search"></i></button>
+                        <button class="btn" type="button"><a href="~/Post/Create">Post</a></button>
+                    </form>
+                </div>
+            </section>
+        }
+        <!--Categories-->
+
+        <h5 class="title-bg">Thông Tin Cá Nhân</h5>
+        <div class="avata">
+            <img src="~/Common/img/@info.Immage" style="width: 270px; height: 290px">
+        </div>
+        <p></p>
+        <table class="table">
+            <tr>
+                <td>Email</td>
+                <td>@info.Email</td>
+            </tr>
+            <tr>
+                <td>Họ Tên</td>
+                <td>@info.FullName</td>
+            </tr>
+            <tr>
+                <td>Ngày Tham Gia</td>
+                <td>@info.CreateDatePeople</td>
+            </tr>
+            <tr>
+                <td><a href="~/People/EditInfo/@info.Id">Sửa Thông Tin</a></td>
+                <td><a href="~/People/LoginHistory/@info.Id">Nhật Ký Hoạt Động</a></td>
+            </tr>
+        </table>
+        <!--Tabbed Content-->
+        <p></p>
+
+
+    </div>
+</div>

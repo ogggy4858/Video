@@ -1,0 +1,179 @@
+﻿@model Data.Framework.Post
+
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var list = (List<Data.DTO.CommentDTO>)ViewBag.Comment;
+
+    bool Like = Convert.ToBoolean(ViewBag.CheckLike);
+
+    bool Dislike = Convert.ToBoolean(ViewBag.CheckDislike);
+
+    var listOffer = new List<Data.DTO.ListOfferDTO>();
+
+    if (WebYoutube.Session.User.Id == 0)
+    {
+        listOffer = (List<Data.DTO.ListOfferDTO>)ViewBag.Offer;
+    }
+    else
+    {
+        listOffer = (List<Data.DTO.ListOfferDTO>)ViewBag.Offer;
+    }
+    int ViewCount = Convert.ToInt32(ViewBag.ViewCount);
+
+}
+@section js{
+
+    <script src="~/Common/js/showComment.js"></script>
+    <script src="~/Common/js/show.js"></script>
+
+}
+@section css{
+    <link href="~/Common/css/show.css" rel="stylesheet" />
+
+}
+<div class="row">
+    <!--Container row-->
+    <!-- Blog Full Post
+    ================================================== -->
+    <div class="span8 blog">
+        <!-- Blog Post 1 -->
+        <article>
+            <h3 class="title-bg" style="text-transform: none"><a>@Model.Title</a></h3>
+            <div class="post-Common">
+
+                <div style="width: 770px; height: 400px">
+                    <div class="video">
+                        <iframe src="~/Common/video/@Model.Video" frameborder="0"></iframe>
+                        @*<video style="width: 770px; height: 400px;" controls poster="~/Common/img/@Model.Poster">
+                            <source src="~/Common/video/@Model.Video" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>*@
+                    </div>
+                </div>
+
+                <div class="post-body">
+                    <div class="hr"></div>
+                    <br>
+                    <span class="noidung1">@Model.Content</span><br>
+                    <div class="he"></div>
+                    <span class="noidung2">@Model.Description</span>
+                    <section class="post-Common show-user">
+                        <div class="post-body about-author">
+                            <img src="~/Common/img/@Model.Person.Immage" class="img" alt="author">
+                            <span><b>@Model.Person.FullName</b></span><br>
+                            <span><b>@Model.Person.Email</b></span><p></p>
+                        </div>
+                        <div class="hr"></div>
+                    </section>
+                </div>
+
+                <div class="post-summary-footer post-summary-footer2">
+                    <ul class="post-data">
+                        <li><i class="icon-calendar"></i>@Model.CreateDate</li>
+
+                        <li><i class="icon-eye-open"></i>@ViewCount Lượt Xem</li>
+
+                        <li id="like" class="like2"><i class="icon-ok"></i><span id="SpanLike"> Thích</span></li>
+                        <li id="dislike" class="dislike2"><i class="icon-remove"></i><span id="SpanDis"> Không Thích</span></li>
+
+                        <li id="comment"><i class="icon-comment"></i><span id="SpanComment"> Bình Luận</span></li>
+                        <li id="share"><i class="icon-random"></i>Chia Sẻ</li>
+                    </ul>
+
+
+
+
+                </div>
+            </div>
+        </article>
+        <!-- About the Author -->
+        <!-- Post Comments
+        ================================================== -->
+
+        <div id="hidecomment">
+            <section class="comments">
+                <h4 class="title-bg" id="titleComment"><a name="comments"></a> Bình Luận</h4>
+                <div class="comment-form-container">
+                    <form action="#" id="comment-form">
+                        <div class="row">
+                            @if (WebYoutube.Session.User.Id == 0)
+                            {
+                                <div class="span3">
+                                    Bạn cần đăng nhập để bình luận
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="span10">
+                                    <textarea id="cm" name="comment" style="width: 78%; height: 70px;"></textarea>
+                                </div>
+                                <div class="span2">
+                                    <button type="button" id="bt" class="btn btn-inverse">Bình Luận</button>
+                                </div>
+                            }
+
+
+                        </div>
+                    </form>
+                </div>
+
+
+                <div id="divLoadComment"></div>
+                <script id="template" type="x-tmpl-mustache">
+                    <ul>
+                        <li>
+                            <span class="comment-name name-bold">{{name}}</span>
+                            <span class="comment-date date">{{date}}</span>
+                            {{{status}}}
+                            <div class="comment-Common content-font">{{content}}</div>
+
+
+                        </li>
+                    </ul>
+                </script>
+
+
+                <!-- Comment Form -->
+
+            </section><!-- Close comments section-->
+        </div>
+    </div><!--Close container row-->
+
+    <div class="span4 sidebar">
+
+
+
+        <h6 class="title-bg"><b>Đề xuất cho bạn</b></h6>
+        <ul class="popular-posts">
+            @foreach (var item in listOffer)
+            {
+                <li>
+                    <a href="~/Post/Show/@item.ID" style="float: left">
+                        @if (item.Poster != null)
+                        {
+                            <img src="~/Common/img/@item.Poster" style="width: 100px; height: 80px;">
+                        }
+                        else
+                        {
+                            <img src="~/Common/img/gallery/gallery-img-1-4col.jpg" style="width: 90px; height: 80px;">
+                        }
+                    </a>
+                    @*<div class="padding"></div>*@
+                    <h6>
+                        <a href="~/Post/Show/@item.ID">
+                            <span class="title-offer">@item.Title</span> <br>
+                            <span class="email">@item.Email</span> <br>
+                        </a>
+                        <span class="email">@item.ViewCount Lượt Xem</span>
+                    </h6>
+
+                </li>
+            }
+        </ul>
+        <!--Tabbed Common-->
+
+
+    </div>
+</div>

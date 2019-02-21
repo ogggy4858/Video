@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var listPost = (List<List<Data.Framework.Post>>)ViewBag.ListPost;
+}
+
+@section css{
+    <link href="~/Common/css/PostCategory2.css" rel="stylesheet" />
+}
+
+<div class="row gallery-row">
+    <div class="span12">
+        @for (int i = 0; i < listPost.Count; i++)
+        {
+            <div class="row clearfix no-margin">
+                @if (listPost[i].Count != 0)
+                {
+                    <h5 class="title-bg" style="padding-bottom: 12px;">
+                        @listPost[i][0].PostCategory.Name
+                        <button class="btn btn-mini btn-inverse hidden-phone" type="button">@Html.ActionLink("Xem Them", "Details", new { id = listPost[i][0].PostCategory.ID })</button>
+                    </h5>
+                }
+                <ul class="gallery-post-grid holder">
+                    @foreach (var it in listPost[i])
+                    {
+                        <li class="span3 gallery-item" data-id="id-1" data-type="illustration">
+                            <span class="gallery-hover-4col hidden-phone hidden-tablet" style="opacity: 0; display: inline;"></span>
+
+                            @if (it.Poster != null)
+                            {
+                                <a href="gallery-single.htm">
+                                    <img src="~/Common/img/@it.Poster" alt="Gallery">
+                                </a>
+                            }
+                            else
+                            {
+                                <video style="width: 270px; height: 220px;">
+                                    <source src="~/Common/video/@it.Video">
+                                </video>
+                            }
+                            <span class="project-details">
+                                <a href="~/Post/Show/@it.ID"><b>@it.Title</b></a>@it.Person.Email
+                            </span>
+                        </li>
+                    }
+                </ul>
+
+            </div>
+        }
+    </div>
+
+</div>

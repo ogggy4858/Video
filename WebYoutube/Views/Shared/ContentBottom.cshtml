@@ -1,0 +1,119 @@
+﻿
+@{
+    Layout = null;
+    var list = (List<Data.DTO.ListNewsOfHomeDTO>)ViewBag.ListNews;
+    var review = (List<Data.Framework.CommentNew>)ViewBag.Review;
+}
+<div class="row">
+    <!-- Begin Bottom Section -->
+    <!-- Blog Preview
+    ================================================== -->
+    <div class="span6">
+        <h5 class="title-bg">
+            Tin Mới Nhất Hôm Nay
+            <small>@DateTime.Now.ToShortDateString()</small>
+            <button id="btn-blog-next" class="btn btn-inverse btn-mini" type="button">&raquo;</button>
+            <button id="btn-blog-prev" class="btn btn-inverse btn-mini" type="button">&laquo;</button>
+        </h5>
+        <div id="blogCarousel" class="carousel slide ">
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+                @if (list.Count != 0)
+                {
+                    <div class="active item">
+                        <img src="~/Common/img/@list[0].Image" alt="" class="align-left blog-thumb-preview" />
+                        <div class="post-info clearfix">
+                            <h4><a href="~/News2/Details/@list[0].ID">@list[0].Title</a></h4>
+                            <ul class="blog-details-preview">
+                                <li><i class="icon-calendar"></i><strong>Ngày đăng: </strong> @list[0].CreateDate
+                                <li>
+                                <li><i class="icon-user"></i><strong>Người đăng: </strong> <a href="#" title="Link">@list[0].Email</a>
+                                <li>
+                                <li><i class="icon-comment"></i><strong>Bình Luận:</strong> <a href="#" title="Link">@list[0].CommentCount</a>
+
+                                <li>
+                                    <i class="icon-tags"></i>
+
+                                    @for (int i = 0; i < list[0].Tags.Length - 1; i++)
+                                    {
+                                        <a href="#">@list[0].Tags[i]</a><span> ,</span>
+                                    }
+                                    <a href="#">@list[0].Tags[list[0].Tags.Length - 1]</a>
+
+
+
+                            </ul>
+                        </div>
+                        <p class="blog-summary">@list[0].ShortContent<a href="~/News2/Details/@list[0].ID">Xem Thêm</a><p>
+                    </div>
+                }
+                @for (int i = 1; i < list.Count; i++)
+                {
+                    <div class="item">
+                        <img src="~/Common/img/@list[i].Image" alt="" class="align-left blog-thumb-preview" />
+                        <div class="post-info clearfix">
+                            <h4><a href="~/News2/Details/@list[i].ID">@list[i].Title</a></h4>
+                            <ul class="blog-details-preview">
+                                <li><i class="icon-calendar"></i><strong>Ngày đăng: </strong> @list[i].CreateDate
+                                <li>
+                                <li><i class="icon-user"></i><strong>Người đăng: </strong> @list[i].Email
+                                <li>
+                                <li><i class="icon-comment"></i><strong>Bình Luận:</strong> @list[i].CommentCount
+                                <li>
+                                    <i class="icon-tags"></i>
+
+                                    @for (int k = 0; k < list[0].Tags.Length - 1; k++)
+                                    {
+                                        <a href="#">@list[i].Tags[k]</a><span> ,</span>
+                                    }
+                                    <a href="#">@list[i].Tags[list[i].Tags.Length - 1]</a>
+
+
+                            </ul>
+                        </div>
+                        <p class="blog-summary">@list[i].ShortContent<a href="~/News2/Details/@list[i].ID">Xem Thêm</a><p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Client Area
+    ================================================== -->
+    <div class="span6">
+        <h5 class="title-bg">
+            Phẩn Hồi Từ Độc Giả
+            <button id="btn-client-next" class="btn btn-inverse btn-mini" type="button">&raquo;</button>
+            <button id="btn-client-prev" class="btn btn-inverse btn-mini" type="button">&laquo;</button>
+        </h5>
+
+        <div id="clientCarousel" class="carousel slide no-margin">
+            <div class="carousel-inner">
+                @if (review.Count != 0)
+                {
+                    <div class="active item">
+                        <p class="quote-text">
+                            "@review[0].Content"
+                            <cite>- @review[0].Person.Email</cite>
+                        </p>
+                    </div>
+                }
+
+                @if (review.Count > 1)
+                {
+                    for (int i = 1; i < review.Count; i++)
+                    {
+                        <div class="item">
+                            <p class="quote-text">
+                                "@review[i].Content"
+                                <cite>- @review[i].Person.Email</cite>
+                            </p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+
+</div>

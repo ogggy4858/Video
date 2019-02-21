@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = null;
+    var list = (List<Data.DTO.ListOfferDTO>)ViewBag.Offer;
+    var listNew = (List<Data.Framework.Post>)ViewBag.ListPostNew;
+
+}
+
+<div class="row gallery-row">
+    <div class="span12">
+        <h5 class="title-bg">
+            Mới Nhất
+            <button class="btn btn-mini btn-inverse hidden-phone" type="button">
+                <a href="~/ViewByDate/Year" style="color: white; text-decoration: none;">
+                    Xem Theo Ngày
+                </a>
+            </button>
+        </h5>
+
+        <div class="row clearfix no-margin">
+            <ul class="gallery-post-grid holder">
+
+                @foreach (var item in listNew)
+                {
+                    <li class="span3 gallery-item" data-id="id-1" data-type="video">
+                        <a href="~/Post/Show/@item.ID">
+                            @if (@item.Poster != null)
+                            {
+                                <img src="~/Common/img/@item.Poster" style="width: 270px; height: 220px;" alt="Gallery">
+                            }
+                            else
+                            {
+                                <video style="width: 270px; height: 220px;">
+                                    <source src="~/Common/video/@item.Video">
+                                </video>
+                            }
+                        </a>
+                        <div style="height: 70px">
+                            <span class="project-details">
+                                <a href="~/Post/Show/@item.ID" style="text-transform: none"><b>@item.Title</b></a>@item.Person.Email
+                            </span>
+                        </div>
+                    </li>
+                }
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="span12">
+        <h5 class="title-bg">
+            Đề Xuất
+        </h5>
+        <div class="row clearfix no-margin">
+            <ul class="gallery-post-grid holder">
+
+                @foreach (var item in list)
+                {
+                    <li class="span3 gallery-item" data-id="id-1" data-type="video">
+           @*             <span class="gallery-hover-4col hidden-phone hidden-tablet"></span>*@
+
+                        <a href="~/Post/Show/@item.ID">
+                            @if (@item.Poster != null)
+                            {
+                                <img src="~/Common/img/@item.Poster" alt="Gallery">
+                            }
+                            else
+                            {
+                                <video style="width: 270px; height: 220px;">
+                                    <source src="~/Common/video/@item.Video">
+                                </video>
+                            }
+                        </a>
+
+                        <div style="height: 70px">
+                            <span class="project-details">
+                                <a href="~/Post/Show/@item.ID"><b>@item.Title</b></a>@item.Email
+                            </span>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div><!-- End Gallery Row -->

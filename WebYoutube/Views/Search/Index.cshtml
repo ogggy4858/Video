@@ -1,0 +1,217 @@
+﻿@model  List<Data.Framework.Post>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int page = ViewBag.Page;
+    int pageSize = ViewBag.PageSize;
+    int count = ViewBag.Count;
+    int totalPage = Convert.ToInt32(ViewBag.TotalPage);
+
+    int prev = ViewBag.Prev;
+    int next = ViewBag.Next;
+
+    string se = ViewBag.SearchString;
+
+    var listNews = (List<Data.DTO.ListNewsDTO>)ViewBag.ListNews;
+    var ListPostCategory = (List<Data.Framework.PostCategory>)ViewBag.ListPostCategory;
+
+}
+
+@section css{
+    <link href="~/Common/css/News2.css" rel="stylesheet" />
+}
+
+
+
+
+
+
+
+<div class="row">
+    <div class="span3 sidebar page-left-sidebar">
+        <h5 class="title-bg" style="margin-top: 0px;">Danh Mục</h5>
+        <ul class="post-category-list">
+            @foreach (var item in ListPostCategory)
+            {
+                <li><a href="~/PostCategory2/Details/@item.ID"><i class="icon-plus-sign"></i>@item.Name</a></li>
+            }
+        </ul>
+
+        <!--Latest News-->
+        <h5 class="title-bg">Bảng Tin</h5>
+        <ul class="popular-posts">
+            @foreach (var item in listNews)
+            {
+                <li>
+                    <a href="~/News2/Details/@item.ID">
+                        <img src="~/Common/img/@item.Image" style="width: 70px; height: 70px;" alt="Popular Post">
+                    </a>
+                    <h6>
+                        <a href="~/News2/Details/@item.ID" style="text-transform: none; font-weight: bold">@item.Title</a>
+                        <br>
+                        <em style="text-transform: none;">Ngày đăng: @Convert.ToDateTime(item.CreateDate).ToShortDateString()</em>
+                    </h6>
+
+                </li>
+            }
+        </ul>
+
+
+    </div>
+    <div class="span9">
+        @if (Model.Count == 0)
+        {
+            <span style="font-size: 24px">Không có kết quả nào</span>
+        }
+        else
+        {
+            for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="row">
+                    <div class="span2">
+                        @if (Model[i].Poster != null)
+                        {
+                            <img src="~/Common/img/@Model[i].Poster">
+                        }
+                        else
+                        {
+                            <img src="~/Common/img/gallery/gallery-img-1-4col.jpg">
+                        }
+                    </div>
+                    <div class="span6">
+                        <div class="rela">
+                            <span class="titleSpan">
+                                <a href="~/Post/Show/@Model[i].ID" class="colorTitle">@Model[i].Title</a>
+                            </span>
+                            <br>
+                            Ngày đăng: <b> @Convert.ToDateTime(Model[i].CreateDate).ToShortDateString() </b>
+                            <br>
+                            @Model[i].Person.Email
+                            <br>
+                            <br>
+                            <a href="~/Post/Show/@Model[i].ID">
+                                Xem Thêm
+                            </a>
+                        </div>
+                    </div>
+                    @if (i != 0)
+                    {
+                        <div style="border-top: 1px solid #FFFFFF; padding-bottom: 15px; margin-top: -20px;"></div>
+                    }
+                </div>
+            }
+
+            <div class="pagination">
+                <ul>
+                    @if (totalPage <= 5)
+                    {
+                        // 12345
+                        if (page == 1)
+                        {
+                            <li class="active"><a>Prev</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/Search/Index/?page=@prev">Prev</a></li>
+                        }
+                        for (int i = 1; i <= totalPage; i++)
+                        {
+                            if (page == i)
+                            {
+                                <li class="active"><a>@i</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="~/Search/Index/?page=@i">@i</a></li>
+                            }
+                        }
+                        if (page == totalPage)
+                        {
+                            <li class="active"><a>Next</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/Search/Index/?page=@next">Next</a></li>
+                        }
+                    }
+                    else
+                    {
+                        //12345 ...
+                        if (page < 4)
+                        {
+
+                            if (page == 1)
+                            {
+                                <li class="active"><a>Prev</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="~/Search/Index/?page=@prev">Prev</a></li>
+                            }
+                            for (int i = 1; i <= 5; i++)
+                            {
+                                if (page == i)
+                                {
+                                    <li class="active"><a>@i</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="~/Search/Index/?page=@i">@i</a></li>
+                                }
+                            }
+                            <li><a href="~/Search/Index/?page=@totalPage">... @totalPage</a></li>
+                            <li><a href="~/Search/Index/?page=@next">Next</a></li>
+                        }
+                        // ... 45678 ...
+                        if (page > 3 && page < totalPage - 2)
+                        {
+                            <li><a href="~/Search/Index/?page=@prev">Prev</a></li>
+                            <li><a href="~/Search/Index/?page=1">1 ...</a></li>
+                            for (int i = page - 2; i <= page + 2; i++)
+                            {
+                                if (page == i)
+                                {
+                                    <li class="active"><a>@i</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="~/Search/Index/?page=@i">@i</a></li>
+                                }
+                            }
+                            <li><a href="~/Search/Index/?page=@totalPage">... @totalPage</a></li>
+                            <li><a href="~/Search/Index/?page=@next">Next</a></li>
+                        }
+                        // ... 45678
+                        if (page == totalPage - 2 || page == totalPage - 1 || page == totalPage)
+                        {
+                            <li><a href="~/Search/Index/?page=@prev">Prev</a></li>
+                            <li><a href="~/Search/Index/?page=1">1 ...</a></li>
+                            @*<li><a>...</a></li>*@
+                            for (int i = totalPage - 4; i <= totalPage; i++)
+                            {
+                                if (page == i)
+                                {
+                                    <li class="active"><a>@i</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="~/Search/Index/?page=@i">@i</a></li>
+                                }
+                            }
+                            if (page == totalPage)
+                            {
+                                <li class="active"><a>Next</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="~/Search/Index/?page=@next">Next</a></li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+</div>

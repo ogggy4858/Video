@@ -1,0 +1,42 @@
+﻿@model Data.Framework.Person
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <table class="table">
+        <tr>
+            <th>
+                Email
+            </th>
+            <td>
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Mật Khẩu
+            </th>
+            <td>
+                @Html.PasswordFor(model => model.Pass, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Pass, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Đăng Nhập" class="btn btn-default">
+                <a href="~/Login/LoginFacebook" class="btn btn-default">Facebook</a>
+                <a href="~/Login/LoginGoogle" class="btn btn-default">Google</a>
+            </td>
+        </tr>
+    </table>
+}
+

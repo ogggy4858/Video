@@ -1,0 +1,206 @@
+﻿@model List<Data.Framework.Post>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string name = ViewBag.GetName;
+
+    int page = ViewBag.Page;
+    int pageSize = ViewBag.PageSize;
+    // count = ViewBag.Count;
+    int totalPage = Convert.ToInt32(ViewBag.TotalPage);
+
+    int prev = ViewBag.Prev;
+    int next = ViewBag.Next;
+}
+
+@*@section css{
+    <link href="~/Common/css/PostCategory2.css" rel="stylesheet" />
+}*@
+
+<div class="row gallery-row">
+    <div class="span12">
+
+        <div class="row clearfix no-margin">
+
+
+            @using (Html.BeginForm("Details", "PostCategory2", FormMethod.Get))
+            {
+                <section>
+                    <div class="input-append">
+                        <form action="#">
+                            <input id="appendedInputButton" style="width: 300px;" name="search" type="text" placeholder="Tìm kiếm">
+                            <button class="btn" type="submit">
+                                <i class="icon-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </section>
+            }
+
+            @if (Model.Count != 0)
+            {
+                <h5 class="title-bg" style="padding-bottom: 12px;">
+                    @Model[0].PostCategory.Name
+                </h5>
+            }
+            else
+            {
+                <h5 class="title-bg" style="padding-bottom: 12px;">
+                    @name
+
+                </h5>
+                <div style="height: 500px;">
+                    <span style="font-size: 28px;">Không có video nào</span>
+                </div>
+            }
+
+            @foreach (var item in Model)
+            {
+                <ul class="gallery-post-grid holder">
+
+                    <li class="span3 gallery-item" data-id="id-1" data-type="illustration">
+                        <span class="gallery-hover-4col hidden-phone hidden-tablet" style="opacity: 0; display: inline;">
+                        </span>
+                        @if (item.Poster != null)
+                        {
+                            <a href="gallery-single.htm">
+                                <img src="~/Common/img/@item.Poster" style="width: 270px; height: 220px;" alt="Gallery">
+                            </a>
+                        }
+                        else
+                        {
+                            <video style="width: 270px; height: 220px;">
+                                <source src="~/Common/video/@item.Video">
+                            </video>
+                        }
+                        <div style="height: 70px;">
+                            <span class="project-details"><a href="~/Post/Show/@item.ID"><b>@item.Title</b></a>@item.Person.Email</span>
+                        </div>
+                    </li>
+
+                </ul>
+            }
+
+
+            <br>
+        </div>
+
+        <div class="pagination">
+            <ul>
+                @if (totalPage <= 5 && totalPage > 0)
+                {
+                    // 12345
+                    if (page == 1)
+                    {
+                        <li class="active"><a>Prev</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="~/PostCategory2/Details/?page=@prev">Prev</a></li>
+                    }
+                    for (int i = 1; i <= totalPage; i++)
+                    {
+                        if (page == i)
+                        {
+                            <li class="active"><a>@i</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/PostCategory2/Details/?page=@i">@i</a></li>
+                        }
+                    }
+                    if (page == totalPage)
+                    {
+                        <li class="active"><a>Next</a></li>
+                    }
+                    else
+                    {
+                        <li><a  href="~/PostCategory2/Details/?page=@next">Next</a></li>
+                    }
+                }
+                else if(totalPage > 5)
+                {
+                    //12345 ...
+                    if (page < 4)
+                    {
+
+                        if (page == 1)
+                        {
+                            <li class="active"><a>Prev</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/PostCategory2/Details/?page=@prev">Prev</a></li>
+                        }
+                        for (int i = 1; i <= 5; i++)
+                        {
+                            if (page == i)
+                            {
+                                <li class="active"><a>@i</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="~/PostCategory2/Details/?page=@i">@i</a></li>
+                            }
+                        }
+                        <li><a href="~/PostCategory2/Details/?page=@totalPage">... @totalPage</a></li>
+                        <li><a href="~/PostCategory2/Details/?page=@next">Next</a></li>
+                    }
+                    // ... 45678 ...
+                    if (page > 3 && page < totalPage - 2)
+                    {
+                        <li><a href="~/PostCategory2/Details/?page=@prev">Prev</a></li>
+                        <li><a href="~/PostCategory2/Details/?page=1">1 ...</a></li>
+                        for (int i = page - 2; i <= page + 2; i++)
+                        {
+                            if (page == i)
+                            {
+                                <li class="active"><a>@i</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="~/PostCategory2/Details/?page=@i">@i</a></li>
+                            }
+                        }
+                        <li><a href="~/PostCategory2/Details/?page=@totalPage">... @totalPage</a></li>
+                        <li><a href="~/PostCategory2/Details/?page=@next">Next</a></li>
+                    }
+                    // ... 45678
+                    if (page == totalPage - 2 || page == totalPage - 1 || page == totalPage)
+                    {
+                        <li><a href="~/PostCategory2/Details/?page=@prev">Prev</a></li>
+                        <li><a href="~/PostCategory2/Details/?page=1">1 ...</a></li>
+                        @*<li><a>...</a></li>*@
+                        for (int i = totalPage - 4; i <= totalPage; i++)
+                        {
+                            if (page == i)
+                            {
+                                <li class="active"><a>@i</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="~/PostCategory2/Details/?page=@i">@i</a></li>
+                            }
+                        }
+                        if (page == totalPage)
+                        {
+                            <li class="active"><a>Next</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/PostCategory2/Details/?page=@next">Next</a></li>
+                        }
+                    }
+                }
+                else if(totalPage == 0)
+                {
+
+                }
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Month";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var list = (List<int>)ViewBag.ListMonth;
+    var year = ViewBag.Year;
+}
+
+@section css{
+    <link href="~/Common/css/year.css" rel="stylesheet" />
+}
+
+
+<div class=" row">
+    <div class="span2"></div>
+    <div class="span8">
+        <div class="month">
+            <ul>
+                <li>
+                    <span style="font-size:22px;">@year</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<div class=" row">
+    <div class="span3"></div>
+    <div class="span6">
+        @foreach (var item in list)
+        {
+            var id = year + "-" + item;
+            <a href="~/ViewByDate/Day/@id" style="text-decoration: none;">
+                <div class="month2">
+                    <ul>
+                        <li>
+                            <span style="font-size:22px;">Tháng @item</span>
+                        </li>
+                    </ul>
+                </div>
+            </a>
+        }
+    </div>
+</div>

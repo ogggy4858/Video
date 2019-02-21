@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "EachDay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<int> list = (List<int>)ViewBag.ListDay;
+    List<Data.Framework.Post> ListVideo = (List<Data.Framework.Post>)ViewBag.ListVideo;
+    var idd = (string)ViewBag.ID;
+
+    var ListPostCategory = (List<Data.Framework.PostCategory>)ViewBag.ListPostCategory;
+    var listNews = (List<Data.DTO.ListNewsDTO>)ViewBag.ListNews;
+
+}
+
+@section css{
+    <link href="~/Common/css/News2.css" rel="stylesheet" />
+}
+
+    <div class="row">
+
+        <div class="span3 sidebar page-left-sidebar">
+            <h5 class="title-bg" style="margin-top: 0px;">Danh Mục</h5>
+            <ul class="post-category-list">
+                @foreach (var item in ListPostCategory)
+                {
+                    <li><a href="~/PostCategory2/Details/@item.ID"><i class="icon-plus-sign"></i>@item.Name</a></li>
+                }
+            </ul>
+
+            <!--Latest News-->
+            <h5 class="title-bg">Bảng Tin</h5>
+            <ul class="popular-posts">
+                @foreach (var item in listNews)
+                {
+                    <li>
+                        <a href="~/News2/Details/@item.ID">
+                            <img src="~/Common/img/@item.Image" style="width: 70px; height: 70px;" alt="Popular Post">
+                        </a>
+                        <h6>
+                            <a href="~/News2/Details/@item.ID" style="text-transform: none; font-weight: bold">@item.Title</a>
+
+                            <br>
+                            <em style="text-transform: none;">
+                                Ngày đăng: @Convert.ToDateTime(item.CreateDate).ToShortDateString()
+                            </em>
+
+
+                        </h6>
+
+                    </li>
+                }
+            </ul>
+
+
+        </div>
+
+        <div class="span9 sidebar page-left-sidebar">
+            <div class="pagination">
+                <ul>
+                    @foreach (var item in list)
+                    {
+                        string[] li = idd.Split('-');
+                        string id = li[0] + "-" + li[1] + "-" + item;
+
+                        if (id == idd)
+                        {
+                            <li class="active">
+                                <a href="~/ViewByDate/EachDay/@id">Ngày @item</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="~/ViewByDate/EachDay/@id">@item</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            <br>
+            @foreach (var item in ListVideo)
+            {
+                <div class="row">
+                    <div class="span2">
+
+                        <img src="~/Common/img/gallery/gallery-img-1-4col.jpg" alt="Gallery">
+                    </div>
+                    <div class="span6">
+                        <div class="rela">
+
+                            <span class="titleSpan">
+                                <a href="~/Post/Show/@item.ID" class="colorTitle">@item.Title</a>
+                            </span><br>
+
+                            Ngày đăng: <b> @Convert.ToDateTime(@item.CreateDate).ToShortDateString() </b>
+
+                            <br><br>
+
+                            <a href="~/Post/Show/@item.ID">
+                                Xem Thêm
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+            <div class="pagination">
+                <ul>
+                    @foreach (var item in list)
+                    {
+                        string[] li = idd.Split('-');
+                        string id = li[0] + "-" + li[1] + "-" + item;
+
+                        if (id == idd)
+                        {
+                            <li class="active">
+                                <a href="~/ViewByDate/EachDay/@id">Ngày @item</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="~/ViewByDate/EachDay/@id">@item</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>

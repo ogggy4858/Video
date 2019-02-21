@@ -1,0 +1,91 @@
+﻿
+@{
+    var post = (List<Data.Framework.Post>)ViewBag.PostsNew;
+    var news = (List<Data.Framework.News>)ViewBag.News;
+}
+
+<div class="footer-container">
+    <!-- Begin Footer -->
+    <div class="container">
+        <div class="row footer-row">
+            <div class="span3 footer-col">
+                <h5>Về Chúng Tôi</h5>
+                <h1>Video</h1><br /><br /><br /><br />
+
+                <ul class="social-icons">
+                    <li><a href="#" class="social-icon facebook"></a></li>
+                    <li><a href="#" class="social-icon twitter"></a></li>
+                    <li><a href="#" class="social-icon dribble"></a></li>
+                    <li><a href="#" class="social-icon rss"></a></li>
+                    <li><a href="#" class="social-icon forrst"></a></li>
+                </ul>
+            </div>
+            <div class="span3 footer-col">
+                <h5>Thông Tin</h5>
+
+                <ul class="post-list">
+                    @if (news != null)
+                    {
+                        for (int i = 0; i < news.Count; i++)
+                        {
+                            <li>
+                                <a href="~/News2/Details/@news[i].ID">
+                                    @news[i].Title
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="span3 footer-col">
+                <h5>Bài Đăng Mới</h5>
+                <ul>
+                    @if (post != null)
+                    {
+                        for (int i = 0; i < post.Count; i++)
+                        {
+                            <li>
+                                <a href="~/Post/Show/@post[i].ID">
+                                    @post[i].Title
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="span3 footer-col">
+                <h5>Video</h5>
+                <ul class="img-feed">
+                    <li><a href="#"><img src="~/Common/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                    <li><a href="#"><img src="~/Common/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                    <li><a href="#"><img src="~/Common/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                    <li><a href="#"><img src="~/Common/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                    <li><a href="#"><img src="~/Common/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                    <li><a href="#"><img src="~/Common/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                    <li><a href="#"><img src="~/Common/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                    <li><a href="#"><img src="~/Common/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                    <li><a href="#"><img src="~/Common/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                    <li><a href="#"><img src="~/Common/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                    <li><a href="#"><img src="~/Common/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                    <li><a href="#"><img src="~/Common/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Begin Sub Footer -->
+            <div class="span12 footer-col footer-sub">
+                <div class="row no-margin">
+                    <div class="span6"><span class="left">Copyright 2012 Piccolo Theme. All rights reserved.</span></div>
+                    <div class="span6">
+                        <span class="right">
+                            <a href="#">Trang Chủ</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                            <a href="#">Danh Mục</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                            <a href="#">Liên Hệ</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                            <a href="#">Hướng Dẫn</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Sub Footer -->
+    </div>
+</div><!-- End Footer -->

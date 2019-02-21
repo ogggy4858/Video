@@ -1,0 +1,82 @@
+﻿@model List<Data.DTO.LikeHistoryDTO>
+
+@{
+    ViewBag.Title = "LikeHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 1;
+}
+
+@section css{
+    <link href="~/Common/css/history.css" rel="stylesheet" />
+}
+
+@Html.Partial("~/Views/People/ViewPatial.cshtml")
+
+@if (Model.Count == 0)
+{
+    <div class="span12 blog">
+        <span style="font-size: 24px">Không Có Dữ Liệu</span>
+        <div style="height: 400px;"></div>
+    </div>
+}
+
+
+@for (int i = 0; i < Model.Count; i++)
+{
+
+    <div class="row">
+        @if (count == 1)
+        {
+            <div class="span2 blog">
+                <h6 class="title-bg"><b>@Convert.ToDateTime(Model[i].CreateDate).ToShortDateString()</b></h6>
+            </div>
+            count++;
+        }
+        else
+        {
+            <div class="span2 blog">
+
+            </div>
+        }
+        @if (i < Model.Count - 1)
+        {
+            if (Convert.ToDateTime(Model[i].CreateDate).ToShortDateString()
+                    != Convert.ToDateTime(Model[i + 1].CreateDate).ToShortDateString())
+            {
+                count = 1;
+            }
+        }
+
+
+            <div class="span10 blog">
+
+                @if (Model[i].TitlePost == null)
+                {
+                    <h6 class="title-bg">Bạn đã thích bài viết: <b>@Model[i].TitleNews</b></h6>
+                }
+                else
+
+                {
+                    <h6 class="title-bg">Bạn đã thích bài viết: <b>@Model[i].TitlePost</b></h6>
+                }
+                <div class="post-summary-footer">
+                    <ul class="post-data-3">
+                        <li><i class="icon-calendar"></i>@Convert.ToDateTime(Model[i].CreateDate).ToShortTimeString()</li>
+                        <li>
+                            @if (Model[i].PostID == null)
+                            {
+                                <a href="~/News2/Details/@Model[i].NewsID" class="btn btn-mini btn-inverse" type="button">Xem Thêm</a>
+                            }
+                            else
+                            {
+                                <a href="~/Post/Show/@Model[i].PostID" class="btn btn-mini btn-inverse" type="button">Xem Thêm</a>
+                            }
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+    </div>
+
+
+}

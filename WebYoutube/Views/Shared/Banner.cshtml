@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+    var res = (Data.DTO.BannerDTO)ViewBag.Banner;
+}
+
+@using (Html.BeginForm("Index", "Search", FormMethod.Get))
+{
+    <section>
+        <div class="input-append">
+            <form action="#">
+                <input id="appendedInputButton" style="width: 300px;" name="searchString" type="text" placeholder="Tìm kiếm">
+
+                <button class="btn" type="submit">
+                    <i class="icon-search"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+}
+
+<div class="row headline">
+    <div class="span8">
+        <div class="flexslider">
+            <a href="~/News2/Details/@res.ID">
+
+                <img src="~/Common/img/@res.Image2" alt="slider" />
+            </a>
+
+        </div>
+    </div>
+    <div class="span4">
+        <h3>
+            Chào mừng đến với website
+        </h3>
+        <p class="lead">
+            <a style="color: black" href="~/News2/Details/@res.ID">
+                @res.Tittle
+            </a>
+        </p>
+        <p>@res.ShortContent</p>
+
+        <a href="~/News2/Details/@res.ID"><i class="icon-plus-sign"></i>Xem Thêm</a>
+    </div>
+</div>

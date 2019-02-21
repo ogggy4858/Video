@@ -1,0 +1,79 @@
+﻿
+@model Data.Framework.Post
+
+@{
+    ViewBag.Title = "Edit Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("EditPost", "People", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+
+<table class="table">
+    <tr>
+        <td>
+            Tiêu Đề
+        </td>
+        <td>
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Nội Dung
+        </td>
+        <td>
+            <textarea name="noidung" style="width: 1000px; height: 100px;">@Model.Content</textarea>
+            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Thêm Mô Tả
+        </td>
+        <td>
+            <textarea name="mota" style="width: 1000px; height: 60px;">@Model.Description</textarea>
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Poster
+        </td>
+        <td>
+            <input type="file" name="poster">
+            @Html.ValidationMessageFor(model => model.Poster, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Chọn Danh Mục
+        </td>
+        <td>
+            @Html.DropDownListFor(model => model.PostCategoryID, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PostCategoryID, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Edit" class="btn btn-default" />
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+}
+
+<div>
+    @Html.ActionLink("Back", "Details", "People")
+</div>
+
+

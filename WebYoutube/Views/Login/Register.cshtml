@@ -1,0 +1,60 @@
+﻿@model Data.Framework.Person
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Register", "Login", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <table class="table">
+        <tr>
+            <th>
+                Email
+            </th>
+            <td>
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Mật Khẩu
+            </th>
+            <td>
+                @Html.EditorFor(model => model.Pass, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Pass, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                Nhập Lại Mật Khẩu
+            </th>
+            <td>
+                <input type="text" name="repass">
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                Họ Và Tên
+            </th>
+            <td>
+                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" value="Đăng Ký" class="btn btn-default">
+            </td>
+        </tr>
+    </table>
+}
+
+

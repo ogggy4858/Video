@@ -1,0 +1,24 @@
+﻿@if (@WebYoutube.Session.User.Id == 0)
+{
+
+}
+else
+{
+    <div class="row">
+        <div class="span2">
+            <h5 class="title-bg"><a href="~/People/LoginHistory/@WebYoutube.Session.User.Id" class="colorA">Nhật ký hoạt động</a></h5>
+        </div>
+        <div class="span2">
+            <h5 class="title-bg"><a href="~/People/PostHistory/@WebYoutube.Session.User.Id" class="colorA">Đăng bài</a></h5>
+        </div>
+        <div class="span2">
+            <h5 class="title-bg"><a href="~/People/CommentHistory/@WebYoutube.Session.User.Id" class="colorA">Bình luận</a></h5>
+        </div>
+        <div class="span2">
+            <h5 class="title-bg"><a href="~/People/LikeHistory/@WebYoutube.Session.User.Id" class="colorA">Thích</a></h5>
+        </div>
+        <div class="span2">
+            <h5 class="title-bg"><a href="~/People/DislikeHistory/@WebYoutube.Session.User.Id" class="colorA">Không thích</a></h5>
+        </div>
+    </div>
+}

@@ -1,0 +1,50 @@
+﻿
+@model List<Data.DTO.ListNewsDTO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@section css{
+    <link href="~/Common/css/News2.css" rel="stylesheet" />
+}
+@if (Model.Count() == 0)
+{
+    <div style="height: 30px;">
+
+    </div>
+    <div style="height: 500px;">
+        <span style="font-size: 40px;">Không Có Bài Viết Nào</span>
+    </div>
+}
+else
+{
+    foreach (var item in Model)
+    {
+    <div class="row">
+        <div class="span2">
+            <img src="~/Common/img/@item.Image">
+        </div>
+        <div class="span6">
+            <div class="rela">
+                <span class="titleSpan">
+                    <a href="~/News2/Details/@item.ID" class="colorTitle">@item.Title</a>
+                </span>
+                <br>
+                Ngày đăng: <b> @Convert.ToDateTime(@item.CreateDate).ToShortDateString() </b>
+                <br>
+                <br>
+                @item.Content
+                <a href="~/News2/Details/@item.ID">
+                    Xem Thêm
+                </a>
+            </div>
+        </div>
+        <div style="border-top: 2px solid #FFFFFF; padding-bottom: 15px; margin-top: -20px;"></div>
+    </div>
+
+    }
+
+}

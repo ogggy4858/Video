@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "EditPass";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int check = ViewBag.Enable;
+}
+@using (Html.BeginForm("EditPass", "People", FormMethod.Post))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<table class="table">
+    @if (check == 0)
+    {
+        <tr>
+            <th>
+                Mật Khẩu Hiện Tại
+            </th>
+            <td>
+                <input type="password" name="pass" disabled>
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <th>
+                Mật Khẩu Hiện Tại
+            </th>
+            <td>
+                <input type="password" name="pass">
+            </td>
+        </tr>
+    }
+    <tr>
+        <th>
+            Mật Khẩu Mới
+        </th>
+        <td>
+            <input type="password" name="newpass">
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Nhập Lại Mật Khẩu Mới
+        </th>
+        <td>
+            <input type="password" name="repass">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Edit" class="btn btn-default" />
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+}
